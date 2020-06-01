@@ -30,4 +30,9 @@ public class KafkaZstdDeserializer implements Deserializer<byte[]> {
         int originalSize = (int) Zstd.decompressedSize(data);
         return Zstd.decompress(data, dict, originalSize);
     }
+
+    @Override
+    public void close() {
+        dict.close();
+    }
 }

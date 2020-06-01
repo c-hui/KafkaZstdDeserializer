@@ -34,4 +34,9 @@ public class KafkaZstdSerializer implements Serializer<byte[]> {
     public byte[] serialize(String topic, byte[] data) {
         return Zstd.compress(data, dict);
     }
+
+    @Override
+    public void close() {
+        dict.close();
+    }
 }
